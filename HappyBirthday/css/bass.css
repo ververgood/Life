@@ -48,13 +48,14 @@ img{ width: 100%; height:auto;}
     margin: 0 auto;
     width: 40%;
     height: 2rem;
-    background: url(../img/btn_invite.png) no-repeat center;
+    background: #B41;
     background-size: 100% 100%;
     text-align: center;
     line-height: 2rem;
     letter-spacing: .2rem;
     font-size: 1rem;
     color: #fff;
+    border-radius: 10%;
 }
 a {
     color: #333;
