@@ -36,7 +36,7 @@ $(function () {
             return num
         }
     }
-    $(".link").on("click",function () {
+  /*  $(".link").on("click",function () {
         var nowTime = new Date();
         if(new Date(birthday) - nowTime <= 0){
             alert("如果到了今天你还在我身边，我希望你能看到我真的很爱你！！")
@@ -63,7 +63,7 @@ $(function () {
                 break;
         }
 
-    })
+    })*/
     //封装alert样式
     var dialog = {
         fucCheckLength : function(strTemp){

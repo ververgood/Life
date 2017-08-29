@@ -1,0 +1,9 @@
+﻿body{color:#363636;background: #ebebeb;font-size:14px;font-family:arial,Microsoft YaHei,Helvetica,sans-serif;tap-highlight-color:transparent;-webkit-tap-highlight-color:transparent;-moz-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+body,button,dd,dl,dt,figure,h1,h2,h3,h4,h5,html,input,li,p,select,span,strong,textarea,u,ul{margin:0;padding:0}
+@media screen and (min-width:410px){body,button,html,input,select,textarea{font-size:18px}}
+@media screen and (min-width:560px){body,button,html,input,select,textarea{font-size:24px}}
+li,ol,ul{list-style:none}
+cite,em,i{font-style:normal}
+p{line-height:1.2rem}
+img{ width: 100%; height:auto;}
+
