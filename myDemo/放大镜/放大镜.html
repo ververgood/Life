@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	img{
+		width: 100%;
+		height: 100%;
+	}
+	#s_box{
+		width: 400px;
+		height: 300px;
+		position: relative;
+		left: 100px;
+		top: 100px;
+	}
+	#s_box .position_box{
+		width: 100px;
+		height: 75px;
+		background: #b6b6b6;
+		opacity: 0.6;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 1;
+		display: none;
+	}
+	#s_box .mark_box{
+		width: 400px;
+		height: 300px;
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: 10;
+	}
+	#b_box{
+		width: 400px;
+		height: 300px;
+		overflow: hidden;
+		position: relative;
+		left: 600px;
+		top: -200px;
+		display: none;
+	}
+	#b_box_all{
+		position: absolute;
+		width:1200px;
+		height: 900px; 
+		left: 0;
+	}
+	
+
+	</style>
+	<script>
+	window.onload=function(){
+		new magnify();
+	}
+	function magnify(){
+		var _this = this;
+		this.mark = document.getElementById("mark");
+		this.psb = document.getElementById("psb");
+		this.boxa = document.getElementById("b_box_all");
+		this.boxb = document.getElementById("b_box");
+		this.mark.onmouseover = function(){
+			_this.coo();
+		}
+		this.mark.onmouseout = function(){
+			_this.coo2();
+		}
+		this.mark.onmousemove = function(){
+			_this.coo3();
+		}
+	}
+	magnify.prototype.coo = function(){
+		this.psb.style.display = "block";
+		this.boxb.style.display = "block";		
+	}
+	magnify.prototype.coo2 = function(){
+		this.psb.style.display = "none";
+		this.boxb.style.display = "none";	
+	}
+	magnify.prototype.coo3 = function(eve){
+		var e = eve||event ; 
+		var left = e.offsetX- this.psb.offsetWidth/2;
+		var top = e.offsetY - this.psb.offsetHeight/2;
+		if(left<0){
+			left = 0;
+		}else if(left > this.mark.offsetWidth - this.psb.offsetWidth){
+			left = this.mark.offsetWidth - this.psb.offsetWidth;
+		}
+		if(top<0){
+			top = 0 ;
+		}else if(top > this.mark.offsetHeight - this.psb.offsetHeight){
+			top = this.mark.offsetHeight - this.psb.offsetHeight;
+		}
+		console.log(left + ":"+ top)
+		this.psb.style.left = left + "px";
+		this.psb.style.top = top + "px";
+		var ratiol = left/(this.mark.offsetWidth - this.psb.offsetWidth);
+		var ratiot = top/(this.mark.offsetHeight - this.psb.offsetHeight);
+		this.boxa.style.left = -ratiol * (this.boxa.offsetWidth - this.boxb.offsetWidth) + "px";
+		this.boxa.style.top = -ratiot * (this.boxa.offsetHeight - this.boxb.offsetHeight) + 'px';
+	}
+	</script>
+</head>
+<body>
+
+	<div id="s_box">
+		<div class="mark_box" id="mark"></div>
+		<img src="1.jpg" alt="">
+		<div class='position_box' id="psb"></div>
+	</div>
+	<div id="b_box">		
+		<div id="b_box_all">
+			<img src="1.jpg" alt="">
+		</div>		
+	</div>
+</body>
+</html>

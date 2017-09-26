@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+		*{margin: 0;padding: 0;}
+		div{height:1500px}
+			#mydiv{width: 100px;height: 200px;border: 1px #000 solid;position: absolute;top:0;left:0;}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div id="mydiv"><h2>欢迎来到</h2></div>
+		<script>
+		window.onload = function(){
+			moveAdv();
+			window.onscroll = function(){
+				moveAdv();
+			};
+		}			
+			 function moveAdv(){	
+				var mydiv = document.getElementById("mydiv");
+				var pageHeight = document.documentElement.clientHeight || document.body.clientHeight;
+				var scrollTop = document.documentElement.scrollTop || document.body.scrollTop || 0 ;
+				var top = parseInt((pageHeight - mydiv.offsetHeight) / 2 + scrollTop);
+				move(mydiv,"top",top);					
+			}
+			function move(dom,property,target){
+				clearInterval(dom[property+"Timer"]);
+				dom[property+"Timer"] = setInterval(function(){
+					var current = parseInt(getstyle(dom,property));
+					if(current == target){
+						clearInterval(clearInterval(dom[property+"Timer"]))
+					}else{
+						var temp = (target - current) / 10 ;
+						var speed = temp > 0 ? Math.ceil(temp) : Math.floor(temp);
+						dom.style[property] = current + speed + "px";
+					}						
+				},30)				
+			}
+			function getstyle(dom,property){
+				if(dom.currentStyle){
+					return dom.currentStyle[property];
+				}else{
+					return getComputedStyle(dom)[property];					
+				}
+			}
+		</script>
+	</body>
+</html>

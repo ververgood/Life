@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			img{position: absolute;top:0;left:0;right:0;bottom:0;margin: auto;}
+		</style>
+	</head>
+	<body>
+		<img id="img1" src="img/Seq_v04_640x378_1.jpg" />
+		<script>
+			var img = document.getElementById("img1");
+			var x = 0 ;
+			var imgs = document.getElementsByTagName("img");
+			var lastImg = img ;
+			var speed = 0 ;
+			var lastX = 0 ;
+			for(var i = 1 ; i < 73 ; i++){
+				var newImg = document.createElement("img");
+				newImg.src = "img/Seq_v04_640x378_" + i + ".jpg";
+				newImg.style.display = "none";
+				document.body.appendChild(newImg);
+			}
+			document.onmousedown = function(e){
+				var evt = e || window.event ;
+				var disX = evt.clientX - x ;
+				document.onmousemove = function(e){
+					var evt = e || window.event ;
+					x = evt.clientX - disX ;
+					var l = Math.floor(-x / 10);
+					if(l < 0){
+						l = l + -Math.floor(l / 73) * 73
+					}else{
+						l = l % 72;
+					}
+					if(lastImg != imgs[l]){
+					lastImg.style.display = "none";
+					imgs[l].style.display = "block";
+					lastImg = imgs[l];
+					}
+					speed = x - lastX;
+					lastX = x ;
+//					console.log(l);
+//					img.src = "img/Seq_v04_640x378_" + l + ".jpg";
+					return false;
+				}
+				document.onmouseup = function(e){
+				document.onmousemove = null;
+				document.onmouseup = null;
+				var timer = setInterval(function(){
+					x += speed;
+					if(speed > 0){
+						speed--;
+					}else if(speed == 0){
+						clearInterval(timer);
+					}else{
+						speed++;
+					}
+					
+					var l = Math.floor(-x / 10);
+					if(l < 0){
+						l = l + -Math.floor(l / 73) * 73
+					}else{
+						l = l % 72;
+					}
+					if(lastImg != imgs[l]){
+					lastImg.style.display = "none";
+					imgs[l].style.display = "block";
+					lastImg = imgs[l];
+					}
+				}, 40)
+			}
+				return false ;
+			}
+			
+			
+		</script>
+	</body>
+</html>

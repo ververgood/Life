@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/move.js"></script>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+		list-style-type: none;
+
+	}
+	body{
+		background: #b6b6b6;
+		background-image: url(images/bg.png);
+	}
+	.warp{
+		width: 450px;
+		height: 410px;
+		margin:120px auto;
+		border-radius: 20px 20px 0 0;
+		overflow: hidden;
+		box-shadow: 0 5px 10px #ddd;
+
+	}
+	.big_img{
+		width:450px;
+		height: 300px;
+		background: #b6b6b6;
+		position: relative;
+	}
+	.big_img ul{
+		position: relative;
+		width: 450px;
+		height: 300px;
+	}
+	.big_img ul li{
+		width: 450px;
+		height: 300px;
+		position: absolute;
+	}
+	.big_img ul li img{
+		width: 100%;
+		height: 100%;
+	}
+
+	.small_img{
+		width:450px;
+		height: 100px;
+		overflow: hidden;
+		padding:4px 0;
+		background: #fff;
+	}
+	.small_img ul{
+		width:900px;
+		height: 100px;
+		position: relative;
+		left: 0;
+	}
+	.small_img ul li{
+		float: left;
+		width: 146px;
+		height: 100px;
+		filter:alpha(opacity:60);
+		opacity: 0.6;
+		padding:0 2px;
+	}
+	.small_img ul li img{
+		width: 100%;
+		height: 100%;
+	}
+	#leftTouch,#rightTouch{
+		display: block;
+		position: absolute;
+		width: 225px;
+		height: 300px;
+		z-index: 100;
+	}
+	#leftTouch{
+		background: green;
+		opacity: 0;
+	}
+	#rightTouch{
+		background: red;
+		opacity: 0;
+		left: 225px;
+	}
+	#btnR,#btnL{
+		position: absolute;
+		display: block;
+		width: 80px;
+		height: 60px;
+		left: 0;
+		top: 140px;
+		z-index: 1000;
+		opacity: 0;
+		filter:alpha(opacity:0);
+		background: #ddd;
+		border-radius: 0 50% 50% 0;
+		box-shadow: 0 0 5px #fff;
+		
+	}
+	#btnR{
+		border-radius: 50% 0 0 50%;
+		left: 370px;
+	}
+	#btnR img,#btnL img{
+		width: 100%;
+		height: 100%;
+	}
+	</style>
+
+</head>
+<body>
+	<div class="warp" id='warp'>
+		<div class="big_img">
+			<span id="btnL">				
+			</span>
+			<span id="leftTouch"></span>
+			<span id="rightTouch"></span>
+			<ul id="bigList">				
+				<li style="z-index: 1">
+					<img src="images/1.jpg" alt="">
+				</li>
+				<li><img src="images/2.jpg" alt=""></li>
+				<li><img src="images/3.jpg" alt=""></li>
+				<li><img src="images/4.jpg" alt=""></li>
+				<li><img src="images/5.jpg" alt=""></li>
+				<li><img src="images/6.jpg" alt=""></li>
+			</ul>
+			<span id="btnR">			
+			</span>
+		</div>
+		<div class="small_img">
+			<ul id="smallList">
+				<li style="opacity:1;filter:alpha(opacity:100)"><img src="images/1.jpg" alt=""></li>
+				<li><img src="images/2.jpg" alt=""></li>
+				<li><img src="images/3.jpg" alt=""></li>
+				<li><img src="images/4.jpg" alt=""></li>
+				<li><img src="images/5.jpg" alt=""></li>
+				<li><img src="images/6.jpg" alt=""></li>
+			</ul>
+		</div>
+	</div>
+	<script>
+		var obtnL = document.getElementById("btnL");
+		var oLeftTouch = document.getElementById("leftTouch");
+		var obtnR = document.getElementById("btnR");
+		var oRightTouch = document.getElementById("rightTouch");
+		var aLis = document.getElementById("smallList").children;
+		var bLis = document.getElementById("bigList").children;
+		var sl = document.getElementById("smallList");
+		var zindex = 0;
+		var now = 0 ;
+		obtnL.onmouseover  = oLeftTouch.onmouseover = function(){
+			move(obtnL,"opacity",80);
+		}
+		obtnL.onmouseout  = oLeftTouch.onmouseout = function(){
+			move(obtnL,"opacity",0);
+		}
+		obtnR.onmouseover  = oRightTouch.onmouseover = function(){
+			move(obtnR,"opacity",80);
+		}
+		obtnR.onmouseout  = oRightTouch.onmouseout = function(){
+			move(obtnR,"opacity",0);
+		}
+		obtnL.onclick = function(){
+			if(now == 0){
+				now = bLis.length - 1;
+			}else{
+				now--;
+			}
+			cut();		
+		}
+		obtnR.onclick = function(){			
+			if(now == bLis.length -1){
+				now = 0;
+			}else{
+				now++;
+			}
+				cut();		
+		}		
+		for(var i = 0 ; i < aLis.length ; i++){
+			aLis[i].index = i;
+			aLis[i].onclick = function(){
+				if(now!=this.index){
+					now = this.index;
+					cut();
+				}							
+			}
+			aLis[i].onmouseover = function(){
+				move(this,"opacity",100);
+			}
+			aLis[i].onmouseout = function(){
+				if(this.index != now){
+					move(this,"opacity",60)
+				}				
+			}
+		}
+			function cut(){
+					zindex++;
+					bLis[now].style.height = "0px";
+					bLis[now].style.zIndex = zindex;
+					move(bLis[now],"height",300);
+					for(var i = 0 ; i < aLis.length; i++){
+						aLis[i].style.opacity = "0.6";
+					}
+					aLis[now].style.opacity = "1";	
+					if(now == 0){
+						move(sl,"left",0);
+					}else if(now == (aLis.length - 1)){
+						move(sl,"left",-(now -2)*150)
+					}else{
+						move(sl,"left",-(now -1)*150);
+					}				
+			}
+			timer = setInterval(obtnR.onclick,3000);
+			document.getElementById("warp").onmouseover = function(){
+				clearInterval(timer);
+			}
+			document.getElementById("warp").onmouseout = function(){
+				timer = setInterval(obtnR.onclick,3000);
+			}
+		
+	</script>
+</body>
+</html>

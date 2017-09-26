@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<style>
+		
+			 *{
+			 margin: 0;
+			 padding: 0;
+		   }
+		   .wrap{
+			 width: 800px;
+			 height: 340px;
+			 background-color: #f8e2e2;
+			 margin: 0 auto;
+		   }
+		   .list{
+			 width: 440px;
+			 
+			 margin: 0px auto;
+		   }
+		   .list li{
+			  list-style: none;
+			  width: 30px;
+			  height: 30px;
+			  display: inline-block;
+			  border: 1px solid #fff;
+			  border-radius: 30px;
+			  line-height: 30px;
+			  text-align: center;
+			  margin: 15px auto 15px;
+			  
+		   }
+		   .wrap p{
+			 text-align: center;
+		   }
+		   .wrap p button{
+			 text-align: center;
+			 width: 100px;
+		   }
+		   #setBtn{
+			 background-color: red;
+			 color: #fff;
+			 border: none;
+		   }
+		   .active{
+			 background-color: red;
+			 color: #fff;
+		   }
+		</style>
+		
+		<script>
+			window.onload = function ()
+			{
+			
+				 var num = 65;
+				var oUl = document.getElementById('list');
+				for(var i =0; i < num; i++){
+				
+					var li = document.createElement('li');
+					li.innerHTML = i + 1;
+					oUl.appendChild(li);
+				
+				}
+				
+				var ballList = oUl.children;
+				//定义一个随机函数
+				
+				function rnd(min, max) {
+				    return parseInt(Math.random()*(max - min + 1) + min);
+				}
+				
+				function rndArray(min, max, length) {
+				//先定义一个空数组
+				var arr = [];
+				//生成一个长度为7的数组
+				while(arr.length < length) {
+				  //生成一个随机数
+				  var rand = rnd(min, max);
+				  //判断生成的随机数rand是否在数组arr里,如然不在，就将这个随机数插入到数组里，如果在，执行下一次循环
+				  if(arr.indexOf(rand) == -1) {
+					arr.push(rand);
+				  }
+				}
+				arr.sort(function(a, b){return a - b;})
+				return arr;
+			  }
+			 
+			  function selectBall() {
+				for(var j = 0; j < ballList.length; j++) {
+				  ballList[j].className = "";  
+				}
+				var arr = rndArray(1,65,1);
+				// console.log(arr);
+				for(var i = 0; i < arr.length; i++) {
+				  ballList[arr[i]-1].className = "active";
+				}
+			  }
+			  var timer = 0;
+			  setBtn.onclick = function() {
+				clearTimeout(timer);
+				timer = setInterval(selectBall,100);
+				setTimeout(function() {  
+				  clearTimeout(timer);
+				},3000)
+				// clearTimeout(timer);
+			  }
+			 
+			  clearBtn.onclick = function() {
+				clearTimeout(timer);
+				for(var j = 0; j < ballList.length; j++) {
+				  ballList[j].className = "";  
+				}
+			  }
+				
+				
+				
+			};
+			
+		</script>
+	</head>
+	<body>
+		<div class="wrap" id="wrap">
+       <ul class="list" id = "list">
+         
+       </ul>
+       <p>
+         <button id="setBtn">随机点名</button>
+        <button id="clearBtn">重新开始</button>
+       </p>
+    </div>
+	</body>
+</html>
