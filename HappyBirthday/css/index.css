@@ -1,3 +1,4 @@
+img{display: block}
 .text{ width: 100%; height: auto; background: #fff no-repeat left top; background-size: 100% auto; -webkit-background-size: 100% auto; margin-top: -.3rem;}
 .text cite{ display: block; padding: 3rem 0 .95rem 0; text-align: center; color: #992304; font-size: 1rem;}
 .text span{ display: block; width: 11.9rem; height: 11.9rem; background: #fff; margin: 0 auto;}
@@ -70,6 +71,15 @@ a {
     background-size:  100% 1px;
     background-repeat: no-repeat;
     background-position: bottom;}
+/*修改swiper的样式*/
+.swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled{
+    position: fixed;
+    top:48%;
+}
+.swiper-button-next, .swiper-button-prev{
+    position: fixed;
+    top:48%;
+}
 /* alert */
 .alertBox{opacity:0.5;position:fixed;top:50%;left:60%;z-index:10001;margin:-20px 0 0 -150px;width:70%;height:40px;border-radius:5px;background:#000;color:#fff;text-align:center;font-size:15px;line-height:40px;-webkit-animation:boxfade 2s ease;-ms-animation:boxfade 2s ease;-o-animation:boxfade 2s ease}
 @font-face {

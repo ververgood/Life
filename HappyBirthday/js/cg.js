@@ -214,7 +214,7 @@
         else {
             var text = ele.innerHTML;
             context.save();
-            var fontSize = 200;
+            var fontSize = 100;
             context.font = fontSize + "px 宋体 bold";
             context.textAlign = "center";
             context.textBaseline = "middle";
