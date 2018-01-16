@@ -59,7 +59,7 @@ $(function () {
             o.cd()
         }
     }
-    //test
+
   /*  $(".link").on("click",function () {
         var nowTime = new Date();
         if(new Date(birthday) - nowTime <= 0){
