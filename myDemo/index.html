@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>demo</title>
+</head>
+<style>
+    html,body,button,dd,dl,dt,figure,h1,h2,h3,h4,h5,html,input,li,p,select,span,strong,textarea,u,ul,canvas{margin:0;padding:0}
+    html,body{
+        height: 100%;
+    }
+    .pop{
+        position: fixed;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        opacity: 0;
+        transition: opacity 1s;
+        visibility: hidden;
+    }
+    .mask{
+        height: 100%;
+        width: 100%;
+        background: #000;
+        opacity: .7;
+        position: absolute;
+    }
+    .iframe{
+        width: 80%;
+        height: 80%;
+        position: absolute;
+        padding: 10px;
+        margin: auto;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: 3px #008dff solid;
+        border-radius: 5px;
+        background:#fff;
+
+    }
+    p{
+        text-align: center;
+        margin-bottom: 10px
+    }
+    iframe{
+        height: 100%;
+        width: 100%
+    }
+
+    .wrap{
+        margin-top: 10px
+    }
+    .wrap ul li{
+        width: 100%;
+        display: flex;
+        height: 100px;
+        justify-content: space-around
+    }
+    .wrap ul li>div{
+        display: flex;
+        flex-direction: column;align-items: center
+    }
+    .wrap ul li div .img{
+        width: 200px;
+        height: 200px;
+    }
+    .wrap ul li .img img{
+        height: 100%;
+        width: 100%
+    }
+    .wrap ul li span{
+        color: #008dff;
+        cursor: pointer
+    }
+</style>
+<body>
+    <div class="wrap">
+        <ul>
+            <li>
+                <div>
+                    <div class="img">
+                        <img src="./img/random.png" alt="">
+                    </div>
+                    <span class="random">随机点名</span>
+                </div>
+                <div>
+                    <div class="img">
+                        <img src="./img/360scroll.png" alt="">
+                    </div>
+                    <span class="scroll">360无缝滚动</span>
+                </div>
+                <div>
+                    <div class="img">
+                        <img src="./img//magnifier.png" alt="">
+                    </div>
+                    <span class="magnifier">放大镜</span>
+                </div>
+                <div>
+                    <div class="img">
+                        <img src="./img//swiper.png" alt="">
+                    </div>
+                    <span class="swiper">轮播图</span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="pop" >
+        <div class="mask"></div>
+        <div class="iframe">
+            <p class="title"></p>
+            <iframe id="frame" src="" frameborder="0"></iframe>
+        </div>
+    </div>
+    <script>
+        (function(){
+            document.querySelector('.random').addEventListener('click',function(){
+                document.querySelector('#frame').setAttribute('src','./nameRandom.html')
+                document.querySelector('.title').innerHTML='随机点名'
+                document.querySelector('.pop').style.visibility = 'inherit'
+                document.querySelector('.pop').style.opacity = '1'
+            })
+            document.querySelector('.scroll').addEventListener('click',function(){
+                document.querySelector('#frame').setAttribute('src','./360scroll/')
+                document.querySelector('.title').innerHTML='360度滚动'
+                document.querySelector('.pop').style.visibility = 'inherit'
+                document.querySelector('.pop').style.opacity = '1'
+            })
+            document.querySelector('.magnifier').addEventListener('click',function(){
+                document.querySelector('#frame').setAttribute('src','./Magnifier/')
+                document.querySelector('.title').innerHTML='放大镜'
+                document.querySelector('.pop').style.visibility = 'inherit'
+                document.querySelector('.pop').style.opacity = '1'
+            })
+            document.querySelector('.swiper').addEventListener('click',function(){
+                document.querySelector('#frame').setAttribute('src','./swiper/')
+                document.querySelector('.title').innerHTML='轮播图'
+                document.querySelector('.pop').style.visibility = 'inherit'
+                document.querySelector('.pop').style.opacity = '1'
+            })
+            document.querySelector('.mask').addEventListener('click',function(){
+                document.querySelector('.pop').style.opacity = '0'
+                document.querySelector('.pop').style.visibility = 'hidden'
+            })
+        })()
+    </script>
+</body>
+</html>

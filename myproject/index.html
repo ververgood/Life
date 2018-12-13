@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>myproject</title>
+</head>
+<style>
+    html,body,button,dd,dl,dt,figure,h1,h2,h3,h4,h5,html,input,li,p,select,span,strong,textarea,u,ul,canvas{margin:0;padding:0}
+    html,body{
+        height: 100%;
+    }
+    header .title{
+        text-align: center;
+        margin: 10px
+    }
+    .txt{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center
+    }
+    p{
+        font-size: 18px;
+        color: blue
+    }
+    .txt button{
+        width: 100px;
+        height: 30px;
+        background: green;
+        color: #fff;
+        font-size: 18px;
+        margin-top: 50px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    button:last-child{
+        background: #FC8632
+    }
+    .txt textarea{
+        padding: 10px;
+        margin-top: 10px
+    }
+</style>
+<body>
+    <header>
+        <div class="title">我的项目</div>
+    </header>
+    <!-- 贷款项目 -->
+    <div class="dk">
+
+    </div>
+    <!-- 公众号项目 -->
+    <div class="gzh">
+
+    </div>
+    <!-- app项目 -->
+    <div class="app">
+
+    </div>
+    <div class="txt">
+        <p>输入内容点击按钮保存</p>
+        <textarea name="" id="needtxt" cols="100" rows="10"></textarea>
+        <button class="preserve">保存</button>
+        <button class="query">查询</button>
+    </div>
+</body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="https://cdn.bootcss.com/qs/6.5.1/qs.min.js"></script>
+<script>
+    document.querySelector('.txt .preserve').addEventListener('click',function(){
+        var txt = document.querySelector('#needtxt').value
+        axios({
+            method: 'post',
+            url: '/test',
+            headers:{
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            data:Qs.stringify({txt})
+        }).then(function (res) {
+            
+        })
+    })
+    document.querySelector('.txt .query').addEventListener('click',function(){
+        axios({
+            method: 'get',
+            url: '/querytxt',
+        }).then(function (res) {
+            
+        })
+    })
+
+</script>
+</html>
