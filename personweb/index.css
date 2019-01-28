@@ -1,0 +1,105 @@
+body{color:#363636;background: #ebebeb;font-size:14px;font-family:arial,Microsoft YaHei,Helvetica,sans-serif;tap-highlight-color:transparent;-webkit-tap-highlight-color:transparent;-moz-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+html,body,button,dd,dl,dt,figure,h1,h2,h3,h4,h5,html,input,li,p,select,span,strong,textarea,u,ul,canvas{margin:0;padding:0}
+/* 手机移动端 */
+@media screen and (max-width:600px){body,button,html,input,select,textarea{font-size:18px}}
+/* 适应平板 */
+@media screen and (min-width:600px) and (max-width:960){body,button,html,input,select,textarea{font-size:24px}}
+/* 适应pc端 */
+@media screen and (min-width:960px){
+    html{
+        height: 100%;
+    }
+    body{
+        height: 100%;
+        background: url('./img/bg1.jpg') no-repeat center;
+        background-size: cover;
+        width: 100%;
+        position: relative;
+    }
+    .company{
+        text-align: right
+    }
+    header .title{
+        text-align: right;
+        color: #000;
+        font-size: 18px;
+        top: 20px;
+        margin-right: 20px;
+        margin-top: 20px
+    }
+    header .companyProject{
+        display: inline-block;
+        color: #ffab00;
+        cursor: pointer;
+        width: 100px;
+        font-size: 18px;
+        margin-right: 40px;
+        margin-top: 10px;
+        border:1px #ffab00 solid;
+        border-radius: 9px;
+        text-align: center
+    }
+    .companyProject:hover{
+        color: #fff;
+        background: greenyellow;
+        border: none
+    }
+    header .newtxt{
+        position: absolute;
+        top: 40px;
+        right: 30%;
+        height:300px ;
+        writing-mode: vertical-rl;
+        letter-spacing: 10px;
+        line-height: 60px;
+        font-size: 30px;
+        font-family: 'STXingkai';
+        -webkit-text-stroke:1px black;/*伪空心的文字，与背景色有关*/
+        color: transparent
+    }
+    header .newtxt h1{
+        
+    }
+    .content{
+        position: absolute;
+        bottom: 40px;
+    }
+    .content div{
+        text-align: center;
+        margin-top: 20px
+    }
+    .content div span{
+        display:inline-block;
+        cursor: pointer;
+        background: green;
+        color: #fff;
+        height: 40px;
+        line-height: 40px;
+        margin-left: 40px;
+        border-radius: 5px;
+        padding: 0 20px
+    }
+    .content div span:first-child{
+        background: blue;
+    }
+    .content div span:last-child{
+        background: red;
+    }
+    .content div span:hover{
+        box-shadow: 0 0 5px green
+    }
+    .content div span:first-child:hover{
+        box-shadow: 0 0 5px blue
+    }
+    .content div span:last-child:hover{
+        box-shadow: 0 0 5px red
+    }
+}
+li,ol,ul{list-style:none}
+cite,em,i{font-style:normal}
+p{line-height:1.2rem}
+img{ width: 100%; height:auto;}
+
+
+
+

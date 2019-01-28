@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>贾秋云的主页</title>
+    <link rel="stylesheet" href="./index.css">
+    <link rel="shortcut icon" href="/favicon.ico" />
+</head>
+<body>
+    <canvas style="display:none" height="500" width="500" id="myCanvas">你的浏览器不支持canvas，赶紧给我换个！</canvas>
+    <header>
+        <div class="title">
+            欢迎来到jqy的个人网站主页
+        </div>
+        <div class="company">
+            <span class="companyProject">我的项目</span>
+        </div>
+        <div class="newtxt">
+            
+        </div>
+    </header>
+    <article class="content">
+        <div>
+            <span class="github">github</span>
+            <span class="npm">npm</span>
+            <span class="demo">demo</span>
+        </div>
+    </article>
+</body>
+<script>
+    (function(){
+        var orginTxt = '三十功名尘与土八千里路云和月莫等闲，白了少年头，空悲切'
+        var orginTxtArr = orginTxt.split('')
+        var newTxt = ''
+        var newindex= 0
+        function addtxt(){
+            setTimeout(function(){
+                if(newindex>=orginTxtArr.length){
+                    return false
+                }else{
+                    newTxt += orginTxtArr[newindex]
+                    newindex++
+                    document.querySelector('.newtxt').innerHTML=newTxt
+                    addtxt()
+                }
+                
+            },500)
+        }
+        addtxt()
+        document.querySelector('.github').addEventListener('click',function(){
+            location.href='https://github.com/ververgood'
+        })
+        document.querySelector('.npm').addEventListener('click',function(){
+            location.href='https://www.npmjs.com/package/jqy_vue_plugin'
+        })
+        document.querySelector('.demo').addEventListener('click',function(){
+            location.href='./myDemo'
+        })
+        document.querySelector('.companyProject').addEventListener('click',function(){
+            location.href='./myproject'
+        })
+        
+        startcanvas()
+        // canvas 代码
+        function startcanvas(){
+            var canvas = document.getElementById('myCanvas')
+            var ctx=canvas.getContext("2d");
+            ctx.clearRect(0, 0, 200, 200); // 擦除(0,0)位置大小为200x200的矩形，擦除的意思是把该区域变为透明
+            ctx.fillStyle = '#dddddd'; // 设置颜色
+            ctx.fillRect(10, 10, 130, 130); // 把(10,10)位置大小为130x130的矩形涂色
+            // 利用Path绘制复杂路径:
+            var path=new Path2D();
+            path.arc(75, 75, 50, 0, Math.PI*2, true);
+            path.moveTo(110,75);
+            path.arc(75, 75, 35, 0, Math.PI, false);
+            path.moveTo(65, 65);
+            path.arc(60, 65, 5, 0, Math.PI*2, true);
+            path.moveTo(95, 65);
+            path.arc(90, 65, 5, 0, Math.PI*2, true);
+            ctx.strokeStyle = '#0000ff';
+            ctx.stroke(path);
+            var cxt2 = canvas.getContext('2d')
+            cxt2.beginPath();
+            cxt2.moveTo(0,0)
+            cxt2.lineTo(500,500);
+            cxt2.closePath()
+            cxt2.strokeStyle='red'
+            cxt2.stroke()
+        }
+    })()
+</script>
+</html>
